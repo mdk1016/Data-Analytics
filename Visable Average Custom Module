@@ -1,0 +1,23 @@
+# Visable Average Custom Module
+Function AverVisible(Rg As Range)
+'UpdateByKutoolsforExcel20151208
+    Dim xCell As Range
+    Dim xCount As Integer
+    Dim xTtl As Double
+    Application.Volatile
+    Set Rg = Intersect(Rg.Parent.UsedRange, Rg)
+    For Each xCell In Rg
+        If xCell.ColumnWidth > 0 _
+          And xCell.RowHeight > 0 _
+          And Not IsEmpty(xCell) _
+          And IsNumeric(xCell.Value) Then
+              xTtl = xTtl + xCell.Value
+              xCount = xCount + 1
+        End If
+    Next
+    If xCount > 0 Then
+        AverVisible = xTtl / xCount
+    Else
+        AverVisible = 0
+    End If
+End Function
